@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="../js/angular.min.js" type="text/javascript"></script>
+<script src="../js/app.js" type="text/javascript"></script>
+<title>Order List Page</title>
+</head>
+<body ng-app="myApp">
+
+<h2 class="page-title">This is Order List page</h2>
+
+<div ng-controller="orderController">
+	<div class="dispDiv" ng-show="showList">
+		<table class="table1">
+			<thead>
+				<tr>
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="order in orders">
+					<td>
+						{{ $index + 1 }}
+					</td>
+					<td>
+						{{order}}
+					</td>
+					<td  ng-repeat="prop in order.prperties">
+						{{prop}}
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+
+		<br/>		
+		<button ng-click="showAddDiv()">Add Order</button>
+	</div>
+	<br/>
+	
+	<div class="addDiv" ng-show="!showList">
+		<div ng-repeat="metaName in names">
+	 		<span ng-show="hideMe(metaName)">{{metaName}}</span>
+		    <input type="text" ng-model="propertities[metaName]" ng-show="hideMe(metaName)"/>
+	 	</div>
+		<button ng-click="addOrder()">Add</button>
+	</div>
+</div>
+
+</body>
+</html>

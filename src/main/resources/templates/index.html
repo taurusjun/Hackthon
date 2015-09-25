@@ -1,10 +1,49 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Index page</title>
+
+<title>Welcome to Aristotle team UDF demo</title>
 </head>
 <body>
 
-<h2 class="page-title">This is index page</h2>
+<script src="./js/jquery-1.11.3.min.js" type="text/javascript">
+</script>
+
+<h1>Welcome to Aristotle team UDF demo</h1>
+<h2 class="page-title">Please enter your user name and password to login</h2>
+<h3>demo user name "A" for one tenant, and demo user name "B" for another different tenant</h3>
+
+<label>User Name:</label>
+<input type="text" id="username"/><p></p>
+<label>Password:</label>
+<input type="password" id="password"/><p></p>
+<input type="button" id="loginButton" value="Login" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#loginButton").click(function( event ) {
+    	var username = $("#username").val();
+		var loginData = JSON.stringify({"username":username, "password":""});
+    	$.ajax({
+    		  type: "POST",
+    		  url: "login",
+    		  data: loginData,
+    		  dataType: "json",
+    		  contentType : "application/json"
+    		}).done(function(data) {
+    			if(data === true) {
+    				document.location = "/page/home.html";    				
+    			} else {
+    				window.alert("invalid user name or password!");
+    			}
+    		});
+    });
+});
+</script>
+
+
+
 </body>
+
+
 </html>

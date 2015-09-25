@@ -1,1 +1,0 @@
-insert into staff values(1,"Wang Jun"); 
